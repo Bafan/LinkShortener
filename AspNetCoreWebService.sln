@@ -1,11 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreWebService", "AspNetCoreWebService\AspNetCoreWebService.csproj", "{CB05BF81-9D45-4853-8F0E-22DABAA07B3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWebService", "AspNetCoreWebService\AspNetCoreWebService.csproj", "{CB05BF81-9D45-4853-8F0E-22DABAA07B3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreWebServiceTest", "AspNetCoreWebServiceTest\AspNetCoreWebServiceTest.csproj", "{3653083E-10EB-4D21-80B2-38FBF64A7DA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWebServiceTest", "AspNetCoreWebServiceTest\AspNetCoreWebServiceTest.csproj", "{3653083E-10EB-4D21-80B2-38FBF64A7DA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkShortener.Engine", "LinkShortener.Engine\LinkShortener.Engine.csproj", "{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,8 +42,23 @@ Global
 		{3653083E-10EB-4D21-80B2-38FBF64A7DA8}.Release|x64.Build.0 = Release|Any CPU
 		{3653083E-10EB-4D21-80B2-38FBF64A7DA8}.Release|x86.ActiveCfg = Release|Any CPU
 		{3653083E-10EB-4D21-80B2-38FBF64A7DA8}.Release|x86.Build.0 = Release|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Debug|x64.Build.0 = Debug|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Debug|x86.Build.0 = Debug|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Release|x64.ActiveCfg = Release|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Release|x64.Build.0 = Release|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF08B5FB-F697-4B66-B076-FFD5AF2BF126}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45638AB3-C8DB-4E9C-8CC1-C264E8436B3A}
 	EndGlobalSection
 EndGlobal
