@@ -17,6 +17,7 @@ namespace LinkShortener.Engine.DataAccess
         public LinkShortenerContext(IAppSettingService appSettingService)
         {
             _appSettingService = appSettingService;
+            base.Database.SetCommandTimeout(120);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
