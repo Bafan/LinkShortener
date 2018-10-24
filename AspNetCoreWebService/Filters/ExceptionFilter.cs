@@ -5,6 +5,8 @@ using System.Web;
 using System.Net;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
+using AspNetCoreWebService.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreWebService.Filters
 {
@@ -12,7 +14,7 @@ namespace AspNetCoreWebService.Filters
     {
         public override void OnException(ExceptionContext context)
         {
-            //context.HttpContext.Request == context.HttpContext.Request.CreateResponse(HttpStatusCode.InternalServerError, actionExecutedContext.Exception.GetDeepExceptionMessage());
+            context.Result = new JsonResult(context.Exception.GetDeepExceptionMessage());
             base.OnException(context);
         }
         
