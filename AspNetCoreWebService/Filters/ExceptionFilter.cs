@@ -14,7 +14,7 @@ namespace AspNetCoreWebService.Filters
     {
         public override void OnException(ExceptionContext context)
         {
-            context.Result = new JsonResult(context.Exception.GetDeepExceptionMessage());
+            context.Result = new JsonResult(context.Exception.ToString());
             base.OnException(context);
         }
         
