@@ -1,33 +1,38 @@
-﻿using LinkShortener.Engine.DataAccess;
-using LinkShortener.Engine.Database;
+﻿using LinkShortener.Engine.Database;
 using LinkShortener.Engine.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 
 namespace LinkShortener.Engine.Services
 {
+    #region Link Shortener Service Interface
     public interface ILinkShortenerService
     {
         Uri OriginToShortener(string uriString);
         Uri ShortenerToOrigin(string uriString);
     }
+    #endregion
 
-    internal class LinkShortenerService: ILinkShortenerService
+    #region Link Shortener Service Implementation
+    internal class LinkShortenerService : ILinkShortenerService
     {
+        #region Private Members
         private ILinkEncoderService _encoder;
         private ILinksDataAccessService _context;
         private IAppSettingService _appSetting;
+        #endregion
 
+        #region Constructor
         public LinkShortenerService(ILinkEncoderService encoder, ILinksDataAccessService context, IAppSettingService appSetting)
         {
             _encoder = encoder;
             _context = context;
-            _appSetting=appSetting;
+            _appSetting = appSetting;
 
         }
+        #endregion
+
+        #region Public Implementations
         public Uri OriginToShortener(string uriString)
         {
             ValidateUri(uriString);
@@ -41,22 +46,26 @@ namespace LinkShortener.Engine.Services
         public Uri ShortenerToOrigin(string uriString)
         {
             ValidateUri(uriString);
-            
+
             if (!Regex.IsMatch(uriString, $"^{_appSetting.GetHostBaseUri.AbsoluteUri}.*"))
                 throw new Exception("Invalid domain name in url");
 
-            Uri uri = new Uri(uriString);            
+            Uri uri = new Uri(uriString);
             var result = _encoder.ShortenToSeed(uri.GetComponents(UriComponents.Path, UriFormat.UriEscaped));
             var link = _context.GetById(result);
             if (link == null)
                 throw new Exception("There is no corresponed record for this link");
             return new Uri(link.Origin);
-        }
+        } 
+        #endregion
 
+        #region Private Methods
         private void ValidateUri(string uriString)
         {
             if (!UriValidator.IsValid(uriString))
                 throw new Exception("Invalid Uri");
-        }
-    }
+        } 
+        #endregion
+    } 
+    #endregion
 }

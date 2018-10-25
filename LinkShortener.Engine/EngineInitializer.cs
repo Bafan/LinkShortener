@@ -2,9 +2,6 @@
 using LinkShortener.Engine.Database;
 using LinkShortener.Engine.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LinkShortener.Engine
 {

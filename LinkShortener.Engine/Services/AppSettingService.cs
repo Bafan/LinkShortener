@@ -1,29 +1,32 @@
 ﻿using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LinkShortener.Engine.Services
 {
+    #region Application Setting Interface
     internal interface IAppSettingService
     {
         Uri GetHostBaseUri { get; }
         string GetConnectionString { get; }
     }
+    #endregion
 
+    #region Application Setting Implementation
     internal class AppSettingService : IAppSettingService
     {
+        #region Private Members
         private IOptions<LinkShortenerSetting> _options;
         private Uri _hostBaseUrl;
+        #endregion
 
+        #region Constructor
         public AppSettingService(IOptions<LinkShortenerSetting> options)
         {
             _options = options;
         }
+        #endregion
 
+        #region Public Members
         public Uri GetHostBaseUri
         {
             get
@@ -37,6 +40,8 @@ namespace LinkShortener.Engine.Services
             }
         }
 
-        public string GetConnectionString => _options.Value.LinkDbConnectionString;
-    }
+        public string GetConnectionString => _options.Value.LinkDbConnectionString; 
+        #endregion
+    }  
+    #endregion
 }

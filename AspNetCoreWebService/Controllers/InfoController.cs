@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace AspNetCoreWebService.Controllers
 {
     [Route("/")]
     public class InfoController : Controller
     {
-        private const string MESSAGE_FORMAT = "Linkshortener service is up";
+        #region private constants
+        private const string MESSAGE_FORMAT = @"<html><head>    <title>LinkShortener</title></head><body>    <h3>The link shortener web-api is ready to use</h3>    <hr />    <h4>Sample requests:</h4>    <p>        To generate shorten url:<br />        Method: Post<br />        Content-Type: application/json<br />        Url: http://ec2-13-229-149-50.ap-southeast-1.compute.amazonaws.com/api/links/createshortener<br />        body: http://www.mydomain.com/query    </p>    <br />    <p>        To retrieve original url:<br />        Method: Post<br />        Content-Type: application/json<br />        Url: http://ec2-13-229-149-50.ap-southeast-1.compute.amazonaws.com/api/links/retrieveorigin<br />        body: http://www.mydomain.com/a    </p></body></html>";
+        #endregion
 
+        #region Actions
         [HttpGet]
-        public JsonResult Get()
+        public IActionResult Get()
         {
-            return Json(new Response
+            return new ContentResult()
             {
-                output = MESSAGE_FORMAT
-            });
-        }
+                Content = MESSAGE_FORMAT,
+                ContentType = "text/html",
+            };
+        } 
+        #endregion
     }
 }

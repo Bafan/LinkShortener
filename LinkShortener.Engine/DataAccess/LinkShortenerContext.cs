@@ -1,34 +1,36 @@
 ﻿using LinkShortener.Engine.Models;
 using LinkShortener.Engine.Services;
-using Microsoft.EntityFrameworkCore;      
-using System;
-using System.Collections.Generic;
-using System.Text;
-using MySql.Data.EntityFrameworkCore.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace LinkShortener.Engine.DataAccess
 {
     internal class LinkShortenerContext: DbContext
-    {        
-        public DbSet<Link> Links { get; set; }
+    {
+        #region Public Members
+        public DbSet<Link> Links { get; set; } 
+        #endregion
 
-        private IAppSettingService _appSettingService;
+        #region Private Members
+        private IAppSettingService _appSettingService; 
+        #endregion
 
+        #region Constructor
         public LinkShortenerContext(IAppSettingService appSettingService)
         {
             _appSettingService = appSettingService;
-            base.Database.SetCommandTimeout(120);
-        }
+        } 
+        #endregion
 
+        #region Protected Implementation
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {            
+        {
             optionsBuilder.UseMySQL(_appSettingService.GetConnectionString);
 
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {            
+        {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Link>(entity =>
@@ -37,6 +39,7 @@ namespace LinkShortener.Engine.DataAccess
                 entity.Property(e => e.Origin);
                 entity.Property(e => e.Shorten);
             });
-        }
+        } 
+        #endregion
     }
 }

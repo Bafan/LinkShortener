@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc.Filters;
-using AspNetCoreWebService.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using AspNetCoreWebService.Extensions;
 
 namespace AspNetCoreWebService.Filters
 {
@@ -14,9 +9,10 @@ namespace AspNetCoreWebService.Filters
     {
         public override void OnException(ExceptionContext context)
         {
-            context.Result = new JsonResult(context.Exception.ToString());
+            var result = new JsonResult(context.Exception.GetDeepExceptionMessage());
+            result.StatusCode = (int) HttpStatusCode.InternalServerError;
+            context.Result = result;
             base.OnException(context);
         }
-        
     }
 }

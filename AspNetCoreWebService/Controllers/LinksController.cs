@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using AspNetCoreWebService.Filters;
 using LinkShortener.Engine.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,18 +8,18 @@ namespace AspNetCoreWebService.Controllers
     [Route("api/[controller]")]
     public class LinksController : Controller
     {
+        #region Private Members
         private ILinkShortenerService _linkShortenerService;
+        #endregion
+
+        #region Constructor
         public LinksController(ILinkShortenerService linkShortenerService)
         {
             _linkShortenerService = linkShortenerService;
         }
+        #endregion
 
-        [HttpGet("info")]
-        public IActionResult info()
-        {            
-            return Ok("Hi");
-        }
-
+        #region Actions
         [HttpPost("createshortener")]
         public IActionResult CreateShortener([FromBody]string value)
         {
@@ -37,6 +32,7 @@ namespace AspNetCoreWebService.Controllers
         {
             var result = _linkShortenerService.ShortenerToOrigin(value);
             return Ok(result);
-        }
+        } 
+        #endregion
     }
 }
