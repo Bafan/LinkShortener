@@ -9,10 +9,10 @@ namespace AspNetCoreWebServiceTest.Controllers
     {
         [Fact]
         public void HealthyResponseTest()
-        {
+        {            
             InfoController controller = new InfoController();
-            var response = controller.Get().Value as Response;
-            Assert.Equal("Linkshortener service is up", response.output);
+            var response = controller.Get() as Microsoft.AspNetCore.Mvc.ContentResult;
+            Assert.Equal(InfoController.MESSAGE_FORMAT, response.Content);
         }
 
         [Theory]
